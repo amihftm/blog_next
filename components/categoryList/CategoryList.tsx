@@ -17,14 +17,14 @@ function CategoryList() {
     <div className="flex flex-col gap-4">
       <h1 className="font-medium text-2xl">دسته بندی ها</h1>
       <ul className='flex gap-2 py-2' key={'listItems'}>
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           return (
             <li
-              key={category[0] as string}
+              key={category[1].toString() + index.toString()}
               className={`flex rounded-xl text-black`}
               style={{ backgroundColor: category[3].toString() }}
             >
-              <Link key={category[0] as string} href={category[1].toString()} className='flex flex-col gap-1 w-44 h-20 justify-center items-center'>
+              <Link key={category[1] as string} href={category[1].toString()} className='flex flex-col gap-1 w-44 h-20 justify-center items-center'>
                 {category[2]}
                 <p>{category[0]}</p>
               </Link>
