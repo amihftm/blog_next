@@ -16,22 +16,22 @@ function CategoryList() {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="font-medium text-2xl">دسته بندی ها</h1>
-      <div className='flex gap-2  py-2'>
+      <ul className='flex gap-2 py-2' key={'listItems'}>
         {categories.map((category) => {
           return (
-            <div
+            <li
+              key={category[0] as string}
               className={`flex rounded-xl text-black`}
               style={{ backgroundColor: category[3].toString() }}
-              key={category[0].toString()}
             >
-              <Link href={category[1].toString()} className='flex flex-col gap-1 w-44 h-20 justify-center items-center'>
+              <Link key={category[0] as string} href={category[1].toString()} className='flex flex-col gap-1 w-44 h-20 justify-center items-center'>
                 {category[2]}
                 <p>{category[0]}</p>
               </Link>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 }
