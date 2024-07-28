@@ -13,6 +13,7 @@ function Home() {
         <CardList />
         <Menu />
       </div>
+      <p className='text-yellow-400 sm:text-red-600 md:text-blue-500 lg:text-gray-500 xl:text-orange-400 2xl:text-lime-800'>TEXT FROM NOw</p>
     </div>
   );
 }
