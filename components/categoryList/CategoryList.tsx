@@ -7,11 +7,11 @@ import Link from 'next/link';
 
 function CategoryList() {
   const categories = [
-    // ["", "", "", ""],
-    ["MERN", "/blog?cat=mern", <FaReact size={24}/>, "#FFAEBC"],
-    ["NEXT.JS", "/blog?cat=next", <SiNextdotjs size={24}/>, "#A0E7E5"],
-    ["طراحی", "/blog?cat=design", <FaPen size={24}/>, "#B4F8C8"],
-    ["کدنویسی", "/blog?cat=code", <FaCode size={24}/>, "#FBE7C6"],
+    // ["", "", "", ""], why the hell did this thing need key???
+    ["MERN", "/blog?cat=mern", <FaReact size={24} key={"cat=mern"}/>, "#FFAEBC"],
+    ["NEXT.JS", "/blog?cat=next", <SiNextdotjs size={24} key={"cat=next"}/>, "#A0E7E5"],
+    ["طراحی", "/blog?cat=design", <FaPen size={24} key={"cat=design"}/>, "#B4F8C8"],
+    ["کدنویسی", "/blog?cat=code", <FaCode size={24} key={"cat=code"}/>, "#FBE7C6"],
   ]
   return (
     <div className="flex flex-col gap-4">
