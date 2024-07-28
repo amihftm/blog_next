@@ -19,15 +19,16 @@ function CategoryList() {
       <div className='flex gap-2  py-2'>
         {categories.map((category) => {
           return (
-            <Link href={category[1].toString()} key={category[0].toString()}>
-              <div
-                className={`flex flex-col cursor-pointer gap-1 w-44 h-20 justify-center items-center rounded-xl text-black`}
-                style={{ backgroundColor: category[3].toString() }}
-              >
+            <div
+              className={`flex rounded-xl text-black`}
+              style={{ backgroundColor: category[3].toString() }}
+              key={category[0].toString()}
+            >
+              <Link href={category[1].toString()} className='flex flex-col gap-1 w-44 h-20 justify-center items-center'>
                 {category[2]}
                 <p>{category[0]}</p>
-              </div>
-            </Link>
+              </Link>
+            </div>
           );
         })}
       </div>
