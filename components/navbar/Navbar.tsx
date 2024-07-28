@@ -8,7 +8,7 @@ import ThemeToggle from './ThemeToggle';
 function Navbar() {
   return (
     <div className="flex place-items-center justify-between py-4">
-      <div className="flex gap-2 basis-5/12">
+      <div className="flex gap-3 basis-5/12 items-center">
         <Link href={"/"} className="primary_link">
           صفحه اصلی
         </Link>
@@ -18,10 +18,10 @@ function Navbar() {
         <LoginLink />
         <ThemeToggle />
       </div>
-      <div className="flex text-lg justify-center font-black basis-2/12">
+      <div className="flex text-lg justify-center font-black lg:basis-2/12">
         <Link href={"/"}>سایت وبلاگ</Link>
       </div>
-      <div className="gap-1 basis-5/12 justify-end hidden lg:flex ">
+      <div className="gap-1 basis-5/12 justify-end hidden lg:flex">
         <Link href={"https://www.youtube.com"}>
           <RiYoutubeLine size={32} className="icons" />
         </Link>

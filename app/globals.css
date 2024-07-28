@@ -28,28 +28,16 @@
 
 @layer components{
   .container{
-    @apply flex min-w-full min-h-screen transition-colors overflow-x-hidden
+    @apply flex min-w-full overflow-x-clip min-h-screen transition-colors text-[var(--textColor)] bg-[var(--bg)]
   };
   .wrapper{
     @apply flex flex-col mx-auto px-10 max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl lg:px-20 xl:max-w-7xl
   };
+  .primary_link{
+    @apply text-[var(--textColor)] font-medium hover:text-orange-400 hidden md:flex
+  }
 }
 
 .icons{
   color: var(--softTextColor)
 }
-
-.container {
-  color: var(--textColor);
-  background-color: var(--bg);
-}
-
-.primary_link {
-  color: var(--textColor);
-  font-size: medium;
-  font-weight: 500;
-}
-.primary_link:hover {
-  color: orange;
-}
-
