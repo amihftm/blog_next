@@ -3,31 +3,53 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --bg: white;
+  --textColor: black;
+  --softBg: #f0f0f0;
+  --softTextColor: #626262;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.darkTheme {
+  --bg:#0f172a;
+  --textColor: #ddd;
+  --softBg: #1f273a;
+  --softTextColor: #a6a6a6;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+* {
+  box-sizing: border-box;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@layer{
+  body{
+    @apply flex overflow-x-hidden
+  };
 }
+
+@layer components{
+  .container{
+    @apply flex min-w-full min-h-screen transition-colors overflow-x-hidden
+  };
+  .wrapper{
+    @apply flex flex-col mx-auto px-10 max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl lg:px-20 xl:max-w-7xl
+  };
+}
+
+.icons{
+  color: var(--softTextColor)
+}
+
+.container {
+  color: var(--textColor);
+  background-color: var(--bg);
+}
+
+.primary_link {
+  color: var(--textColor);
+  font-size: medium;
+  font-weight: 500;
+}
+.primary_link:hover {
+  color: orange;
+}
+
