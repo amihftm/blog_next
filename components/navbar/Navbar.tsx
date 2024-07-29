@@ -7,7 +7,7 @@ import ThemeToggle from './ThemeToggle';
 
 function Navbar() {
   return (
-    <div className="flex place-items-center justify-between py-4">
+    <div className="flex place-items-center justify-between py-4 mb-8">
       <div className="flex gap-3 basis-5/12 items-center">
         <Link href={"/"} className="primary_link">
           صفحه اصلی

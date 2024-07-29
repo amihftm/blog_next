@@ -9,7 +9,7 @@ function Home() {
     <div className='flex flex-col w-full gap-6 mt-6'>
       <Featured />
       <CategoryList />
-      <div>
+      <div className="flex gap-8">
         <CardList />
         <Menu />
       </div>

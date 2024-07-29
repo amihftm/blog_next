@@ -29,7 +29,7 @@ function LoginLink() {
       <div
         className={`bg-[var(--bg)] absolute left-0 top-12 h-[calc(100%-3rem)] w-full ${
           menuOpen ? "flex" : "hidden"
-        } opacity-90 justify-center items-center`}
+        } opacity-95 justify-center items-center z-50`}
       >
         <div className='flex flex-col justify-between items-center gap-3 *:text-3xl'>
           <Link href={"/"}>صفحه اصلی</Link>

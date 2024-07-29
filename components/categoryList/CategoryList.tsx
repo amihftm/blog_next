@@ -7,7 +7,6 @@ import Link from 'next/link';
 
 function CategoryList() {
   const categories = [
-    // ["", "", "", ""], why the hell did this thing need key???
     ["MERN", "/blog?cat=mern", <FaReact size={24} key={"cat=mern"}/>, "#FFAEBC"],
     ["NEXT.JS", "/blog?cat=next", <SiNextdotjs size={24} key={"cat=next"}/>, "#A0E7E5"],
     ["طراحی", "/blog?cat=design", <FaPen size={24} key={"cat=design"}/>, "#B4F8C8"],
@@ -15,8 +14,8 @@ function CategoryList() {
   ]
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="font-medium text-2xl">دسته بندی ها</h1>
-      <ul className='flex gap-2 py-2' key={'listItems'}>
+      <h2 className='title_h2'>دسته بندی ها</h2>
+      <ul className='flex gap-2 py-2 overflow-auto' key={'listItems'}>
         {categories.map((category, index) => {
           return (
             <li
