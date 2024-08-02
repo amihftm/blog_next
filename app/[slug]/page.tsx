@@ -1,3 +1,5 @@
+import Comment from '@/components/blog/Comment';
+import CommentSection from '@/components/blog/CommentSection';
 import Menu from '@/components/menu/Menu';
 import Image from 'next/image'
 import React from 'react'
@@ -5,9 +7,9 @@ import React from 'react'
 function SignlePage() {
   return (
     <div className="flex flex-col">
-      <div className="flex gap-6 min-h-72 items-center py-10 mb-6">
-        <div className="flex flex-[1] flex-col gap-6">
-          <h1 className="font-bold text-3xl">
+      <div className="flex gap-12 min-h-72 items-center py-10 mb-6">
+        <div className="flex flex-[1] flex-col gap-12">
+          <h1 className="font-bold text-4xl tracking-wider leading-relaxed">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
             استفاده از طراحان گرافیک است
           </h1>
@@ -15,7 +17,7 @@ function SignlePage() {
             <div className="flex relative aspect-square w-14 rounded-[50%] overflow-hidden">
               <Image
                 src={"/images/root/featured.webp"}
-                alt="پست اخیر"
+                alt="تصویر نویسنده"
                 fill
                 className="object-cover"
               />
@@ -26,17 +28,17 @@ function SignlePage() {
             </div>
           </div>
         </div>
-        <div className="flex flex-[1] h-full relative ">
+        <div className="hidden lg:flex flex-[1] h-full relative ">
           <Image
             src={"/images/root/featured.webp"}
             alt="پست اخیر"
             fill
-            className="object-contain"
+            className="object-cover"
           />
         </div>
       </div>
-      <div className='flex flex-row gap-8'>
-        <div className='flex flex-col md:basis-2/3'>
+      <div className="flex flex-row gap-8">
+        <div className="flex flex-col md:basis-2/3">
           <p>
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
             استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
@@ -63,15 +65,9 @@ function SignlePage() {
             اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد
             استفاده قرار گیرد.
           </p>
+          <CommentSection />
         </div>
         <Menu />
-      </div>
-      <div>
-        <h2>نظرات</h2>
-        <div>
-            <input></input>
-            <button>ثبت</button>
-        </div>
       </div>
     </div>
   );

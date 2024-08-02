@@ -38,7 +38,7 @@
   };
   .title_h2 {
     @apply font-medium text-2xl
-  }
+  };
 }
 
 .icons{

@@ -1,0 +1,15 @@
+.main_button{
+    @apply px-10 py-3 rounded-xl font-semibold min-w-40 lg:text-3xl lg:min-w-64
+}
+
+.main_button:first-of-type {
+    @apply bg-red-600
+}
+
+.main_button:nth-child(3) {
+    @apply bg-blue-500
+}
+
+.main_button:last-child {
+    @apply bg-slate-900 text-white
+}

@@ -4,7 +4,7 @@ import React from 'react'
 function Featured() {
   return (
     <div className="flex gap-6 flex-col">
-      <h1 className="text-5xl tracking-wide leading-tight font-bold">
+      <h1 className="text-3xl md:text-5xl tracking-wide md:leading-snug font-bold">
         وب اپلیکیشن بلاگ نویسی کد نویسی شده به زبان Next.js با اتصال به دیتابیس
         MongoDB
       </h1>
