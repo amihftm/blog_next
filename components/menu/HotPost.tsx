@@ -1,9 +1,15 @@
+import moment from "jalali-moment";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function HotPost() {
-  "TEMPLATE";
+function HotPost({data}: {data:{
+  slug: string;
+  title: string;
+  desc: string;
+  createdAt: string
+}}) {
+  const {slug,title, createdAt, desc } = data
   return (
     <div className="flex flex-row gap-4 items-center  my-4">
       <div className="flex flex-[1] relative aspect-square rounded-[50%] overflow-hidden border-[3px] bg-gray-400">
@@ -16,18 +22,17 @@ function HotPost() {
       </div>
       <div className="flex flex-[4] flex-col gap-2">
         <div className="px-3 py-1 rounded-3xl bg-blue-400 w-max font-light text-black">
-          عنوان
+        {title}
         </div>
         <Link href={"/"}>
           <p className="font-light text-[var(--softTextColor)]">
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-            استفاده از طراحان گرافیک است.
+          {desc.slice(0, 150)} ...
           </p>
         </Link>
         <div className="flex flex-row gap-2 font-light text-sm text-[var(--softTextColor)]">
-          <span>نام</span>
+          <span>طراحی</span>
           <span>-</span>
-          <span>تاریخ</span>
+          <span>{moment(createdAt).locale('fa').format('jYYYY/jMM/jDD')}</span>
         </div>
       </div>
     </div>

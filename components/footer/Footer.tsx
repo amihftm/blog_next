@@ -50,7 +50,7 @@ function Footer() {
           <h2 className='font-bold text-xl'>لینک ها</h2>
           <ul>
             {linksLinks.map((link) => (
-              <Link href={link[1]} key={link[1]}>
+              <Link href={link[1]} key={link[1]+link[0]}>
                 <li className='font-light'>{link[0]}</li>
               </Link>
             ))}
@@ -60,7 +60,7 @@ function Footer() {
         <h2 className='font-bold text-xl'>تگ ها</h2>
           <ul>
             {tagsLinks.map((link) => (
-              <Link href={link[1]} key={link[1]}>
+              <Link href={link[1]} key={link[1]+link[0]}>
                 <li className='font-light'>{link[0]}</li>
               </Link>
             ))}

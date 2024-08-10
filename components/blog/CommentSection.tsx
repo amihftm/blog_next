@@ -1,31 +1,28 @@
 import React from 'react'
 import Comment from './Comment'
+import SendComment from './SendComment';
+import { getComments } from '@/utils/recieveComment';
 
-function CommentSection() {
+async function CommentSection({slug}:{slug:string}) {
+
+  const comments = await getComments(slug) as {id:string, desc:string, postSlug:string, userID:string, createdAt:string}[]
+
   return (
     <div className="flex flex-col gap-4 py-8">
-        <h2 className="title_h2">نظرات</h2>
-        <form>
-          <div className="flex">
-            <textarea
-              placeholder="نظر خود را وارد کنید..."
-              className="flex flex-auto py-2 px-2 min-h-24 text-[var(--bg)] rounded-md"
-            ></textarea>
-            <button
-              type="submit"
-              className="flex px-5 py-3 mx-4 rounded-lg bg-teal-800 text-white justify-center items-center self-center"
-            >
-              ثبت
-            </button>
-          </div>
-        </form>
-        <div className='flex flex-col gap-8 py-5'>
-          <Comment />
-          <Comment />
-          <Comment />
+      <SendComment slug={slug} />
+      {comments ? (
+        <div className="flex flex-col gap-8 py-5">
+          {comments.map((comment) => {
+            return <Comment data={comment} key={comment.id}/>;
+          })}
         </div>
-      </div>
-  )
+      ) : (
+        <div className="flex py-8">
+          <p>هنوز هیچ نظری ارسال نشده!</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default CommentSection

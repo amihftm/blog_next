@@ -1,31 +1,56 @@
-import React from 'react'
-import { FaCode } from "react-icons/fa";
-import { SiNextdotjs } from "react-icons/si";
-import { FaReact } from "react-icons/fa";
-import { FaPen } from "react-icons/fa";
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
+import * as FaIcons from "react-icons/fa"
+import * as SiIcons from "react-icons/si"
 
-function CategoryList() {
-  const categories = [
-    ["MERN", "/blog?cat=mern", <FaReact size={24} key={"cat=mern"}/>, "#FFAEBC"],
-    ["NEXT.JS", "/blog?cat=next", <SiNextdotjs size={24} key={"cat=next"}/>, "#A0E7E5"],
-    ["طراحی", "/blog?cat=design", <FaPen size={24} key={"cat=design"}/>, "#B4F8C8"],
-    ["کدنویسی", "/blog?cat=code", <FaCode size={24} key={"cat=code"}/>, "#FBE7C6"],
-  ]
+async function getCategories() {
+  const res = await fetch(`${process.env.HOST_URL}/api/categories`, {cache:'no-cache'});
+
+  if (!res.ok) throw new Error("failed");
+
+  return res.json();
+}
+
+function returnIcon(image='icon') {
+  try {
+    if(image.startsWith("||ICONS||")) {
+      const values = image.split("||");
+      if (values[2] === "fa") {
+        const IconComponent = FaIcons[values[3] as keyof typeof FaIcons];
+        return <IconComponent size={24} />;
+      }
+      if (values[2] === "si") {
+        const IconComponent = SiIcons[values[3] as keyof typeof SiIcons];
+        return <IconComponent size={24} />;
+      }
+      return <FaIcons.FaBloggerB size={24} />;
+    }
+  } catch(e) {
+    console.log(e)
+    return <FaIcons.FaBloggerB size={24} />;
+  }
+}
+
+async function CategoryList() {
+  const categories = await getCategories()
+
   return (
     <div className="flex flex-col gap-4">
-      <h2 className='title_h2'>دسته بندی ها</h2>
-      <ul className='flex gap-2 py-2 overflow-auto' key={'listItems'}>
-        {categories.map((category, index) => {
+      <h2 className="title_h2">دسته بندی ها</h2>
+      <ul className="flex gap-2 py-2 overflow-auto" key={"listItems"}>
+        {categories.map((category:{id:String, slug:string, image:string, title:string, color:string}, index:number) => {
           return (
             <li
-              key={category[1].toString() + index.toString()}
+              key={category["id"].toString() + index.toString()}
               className={`flex rounded-xl text-black`}
-              style={{ backgroundColor: category[3].toString() }}
+              style={{ backgroundColor: category["color"]?.toString() }}
             >
-              <Link key={category[1] as string} href={category[1].toString()} className='flex flex-col gap-1 w-44 h-20 justify-center items-center'>
-                {category[2]}
-                <p>{category[0]}</p>
+              <Link
+                href={`/blog?cat=${category["slug"]}`}
+                className="flex flex-col gap-1 w-44 h-20 justify-center items-center"
+              >
+                {!!category["image"] && returnIcon(category["image"])}
+                <p>{category["title"]}</p>
               </Link>
             </li>
           );
@@ -35,4 +60,4 @@ function CategoryList() {
   );
 }
 
-export default CategoryList
+export default CategoryList;

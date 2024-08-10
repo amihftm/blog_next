@@ -1,9 +1,11 @@
 "use client"
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
 function LoginLink() {
   const [userIn, setUserIn] = useState(true)
+  const {data, status} = useSession()
   const [menuOpen, setMenu] = useState(false)
   return (
     <>
@@ -21,17 +23,20 @@ function LoginLink() {
           <div className="h-0.5 w-4 bg-[var(--textColor)]"></div>
         </div>
       </div>
-      {userIn ? (
-        <Link href={"/write"}>متن جدید</Link>
+      {status === "authenticated" ? (
+        <>
+          <Link href={"/write"} className="primary_link">متن جدید</Link>
+          <button onClick={() => signOut()} className="primary_link ">خروج</button>
+        </>
       ) : (
-        <Link href={"/login"}>ورود</Link>
+        <Link href={"/login"} className="primary_link">ورود</Link>
       )}
       <div
         className={`bg-[var(--bg)] absolute left-0 top-12 h-[calc(100%-3rem)] w-full ${
           menuOpen ? "flex" : "hidden"
         } opacity-95 justify-center items-center z-50`}
       >
-        <div className='flex flex-col justify-between items-center gap-3 *:text-3xl'>
+        <div className="flex flex-col justify-between items-center gap-3 *:text-3xl">
           <Link href={"/"}>صفحه اصلی</Link>
           <Link href={"/"}>درباره ما</Link>
         </div>

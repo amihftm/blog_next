@@ -3,11 +3,11 @@
 }
 
 .main_button:first-of-type {
-    @apply bg-red-600
+    @apply bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed
 }
 
 .main_button:nth-child(3) {
-    @apply bg-blue-500
+    @apply bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed
 }
 
 .main_button:last-child {

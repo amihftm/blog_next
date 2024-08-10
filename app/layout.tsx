@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { ThemeProvider } from "@/providers/theme/themeContext";
 import BWTheme from "@/providers/bwTheme/BWTheme";
+import AuthProvider from "@/providers/auth/AuthProvider";
 
 const Bidad = localFont({src: [
   {path: './fonts/Bidad-Thin.ttf', weight:'100'},
@@ -29,17 +30,19 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={Bidad.className}>
-        <ThemeProvider>
-          <BWTheme>
-            <div className="container">
-              <div className="wrapper">
-                <Navbar />
-                {children}
-                <Footer />
+        <AuthProvider>
+          <ThemeProvider>
+            <BWTheme>
+              <div className="container">
+                <div className="wrapper">
+                  <Navbar />
+                  {children}
+                  <Footer />
+                </div>
               </div>
-            </div>
-          </BWTheme>
-        </ThemeProvider>
+            </BWTheme>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

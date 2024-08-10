@@ -5,7 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 import { useCallback, useEffect, useState } from 'react'
 import Link from '@tiptap/extension-link'
 
-const Tiptap = ({onChange}: {onChange: Function}) => {
+const Tiptap = ({onSubmit}: {onSubmit:Function}) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -16,7 +16,6 @@ const Tiptap = ({onChange}: {onChange: Function}) => {
       }),
     ],
     content: "<p>اینجا بنویسید</p>",
-    onUpdate: ({editor}) => {onChange(editor.getJSON())},
     editorProps: {
       attributes: {
         class: 'focus:outline-none',
@@ -56,6 +55,7 @@ const Tiptap = ({onChange}: {onChange: Function}) => {
     editor.chain().focus().extendMarkRange('link').setLink({ href: url })
       .run()
   }, [editor])
+
 
   if (!editor) {
     return null;
@@ -101,14 +101,27 @@ const Tiptap = ({onChange}: {onChange: Function}) => {
               خط زده
             </button>
             {!editor.isActive("link") ? (
-              <button onClick={setLink} className='p-1 rounded-lg hover:bg-[var(--softBg)]'>تنظیم لینک</button>
+              <button
+                onClick={setLink}
+                className="p-1 rounded-lg hover:bg-[var(--softBg)]"
+              >
+                تنظیم لینک
+              </button>
             ) : (
-              <button onClick={() => editor.chain().focus().unsetLink().run()} className='p-1 rounded-lg bg-purple-700 hover:bg-purple-900'>حذف لینک</button>
+              <button
+                onClick={() => editor.chain().focus().unsetLink().run()}
+                className="p-1 rounded-lg bg-purple-700 hover:bg-purple-900"
+              >
+                حذف لینک
+              </button>
             )}
           </div>
         </BubbleMenu>
       )}
       <EditorContent editor={editor} className="focus:outline-none" />
+      <button className="px-4 py-2 bg-lime-400 text-black text-xl absolute md:top-5 md:left-20 left-5 top-20 rounded-2xl hover:bg-lime-500" onClick={() => onSubmit(editor.getJSON(), editor.getText())}>
+        انتشار
+      </button>
     </>
   );
 }
