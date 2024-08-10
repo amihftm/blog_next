@@ -34,9 +34,10 @@ async function CardList({ page, blog }: { page: number; blog: string }) {
           createdAt: string;
         }) {
           const catName = await getBlogInfo(post.categorySlug);
+          console.log(post.categorySlug)
           return (
             <RecentPosts
-              cat={catName.title}
+              cat={'design'}
               date={post.createdAt}
               desc={post.desc}
               title={post.title}

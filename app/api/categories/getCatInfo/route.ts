@@ -7,7 +7,7 @@ export const GET = async (req:NextRequest) => {
     try{
         const cat = searchParams.get("blog") as string
 
-        const CategoryInfo = await prisma.category.findFirst({where:{slug:{equals:cat}}})
+        const CategoryInfo = await prisma.category.findUnique({where:{slug:cat}})
         return Response.json(CategoryInfo,{status:200})
     } catch (err) {
         console.log(err)
