@@ -2,8 +2,8 @@ import prisma from "@/utils/connect"
 import { NextRequest } from "next/server"
 
 export const GET = async (req:NextRequest) => {
+  const { searchParams } = new URL(req.url as string);
     try{
-        const {searchParams} = new URL(req.url as string)
         const user = searchParams.get("user") as string
 
         const userInfo = await prisma.user.findUnique({

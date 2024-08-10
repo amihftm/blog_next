@@ -2,8 +2,8 @@ import prisma from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req:NextRequest) => {
+  const {searchParams} = new URL(req.url as string)
     try{
-        const {searchParams} = new URL(req.url as string)
         const postSlug = searchParams.get("post") as string
         const post_info = await prisma.post.findUnique({
           where: { slug: postSlug },

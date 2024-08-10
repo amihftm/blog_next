@@ -3,8 +3,8 @@ import { NextApiRequest } from "next"
 import { NextRequest } from "next/server"
 
 export const GET = async (req:NextRequest) => {
+    const {searchParams} = new URL(req.url as string)
     try{
-        const {searchParams} = new URL(req.url as string)
         const cat = searchParams.get("blog") as string
 
         const CategoryInfo = await prisma.category.findFirst({where:{slug:{equals:cat}}})

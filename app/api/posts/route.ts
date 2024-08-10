@@ -2,8 +2,8 @@ import prisma from "@/utils/connect"
 import { NextRequest } from "next/server"
 
 export const GET = async (req:NextRequest) => {
+  const {searchParams} = new URL(req.url as string)
     try{
-        const {searchParams} = new URL(req.url as string)
         const pageNum = parseInt(searchParams.get("pageNum") as string)
         const blog = searchParams.get("blog") as string || ''
         const POSTS_PER_PAGE = 2
@@ -25,8 +25,8 @@ export const GET = async (req:NextRequest) => {
 }
 
 export const POST = async (req:NextRequest) => {
+  const body = await req.json()
     try{
-        const body = await req.json()
         await prisma.post.create({
           data: {
             content: body.content,
