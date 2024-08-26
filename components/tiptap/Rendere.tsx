@@ -11,11 +11,9 @@ import Link from "@tiptap/extension-link";
 
 const Tiptap = ({ json }: { json: any }) => {
   let output
-  if(typeof window !== "undefined") {
-    output = useMemo(() => {
-      return generateHTML(json, [StarterKit, Link]);
-    }, [json]);
-  }
+  output = useMemo(() => {
+    return generateHTML(json, [StarterKit, Link]);
+  }, [json]);
 
   const editor = useEditor({
     extensions: [

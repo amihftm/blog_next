@@ -8,7 +8,6 @@ import { FaRegImage } from "react-icons/fa";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { IoVideocamOutline } from "react-icons/io5";
 import Tiptap from "@/components/tiptap/Tiptap";
-import { writePosts } from '@/utils/posts';
 import { createNewPost } from "../actions/posts";
 
 function WritePage() {
