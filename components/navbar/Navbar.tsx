@@ -8,7 +8,7 @@ import ThemeToggle from './ThemeToggle';
 function Navbar() {
   return (
     <div className="flex place-items-center justify-between py-4 mb-8">
-      <div className="flex gap-3 md:basis-7/12 lg:basis-5/12 items-center">
+      <div className="flex gap-3 items-center md:basis-7/12 lg:basis-5/12">
         <Link href={"/"} className="primary_link">
           صفحه اصلی
         </Link>
