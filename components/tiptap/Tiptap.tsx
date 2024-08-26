@@ -2,6 +2,7 @@
 
 import { useEditor, EditorContent, BubbleMenu, JSONContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import Placeholder from '@tiptap/extension-placeholder'
 import { useCallback, useEffect, useState } from 'react'
 import Link from '@tiptap/extension-link'
 
@@ -14,13 +15,17 @@ const Tiptap = ({onSubmit}: {onSubmit:Function}) => {
         autolink: true,
         defaultProtocol: "https",
       }),
+      Placeholder.configure({
+        placeholder: "اینجا بنویسید...",
+        emptyNodeClass: 'first:before:text-gray-400 first:before:content-[attr(data-placeholder)] first:before:pointer-events-none first:before:float-right'
+      }),
     ],
-    content: "<p>اینجا بنویسید</p>",
+
     editorProps: {
       attributes: {
-        class: 'focus:outline-none',
-      }
-    }
+        class: "focus:outline-none",
+      },
+    },
   });
 
   const [isEditable, setIsEditable] = useState(true)
@@ -118,7 +123,7 @@ const Tiptap = ({onSubmit}: {onSubmit:Function}) => {
           </div>
         </BubbleMenu>
       )}
-      <EditorContent editor={editor} className="focus:outline-none" />
+      <EditorContent editor={editor} />
       <button className="px-4 py-2 bg-lime-400 text-black text-xl absolute md:top-5 md:left-20 left-5 top-20 rounded-2xl hover:bg-lime-500" onClick={() => onSubmit(editor.getJSON(), editor.getText())}>
         انتشار
       </button>
