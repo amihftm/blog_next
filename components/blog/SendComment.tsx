@@ -1,23 +1,22 @@
 "use client";
-import { writeComment } from '@/utils/comment';
-import { signIn, useSession } from 'next-auth/react';
+import { sendComment } from '@/app/actions/comment';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Router } from 'next/router';
 import React, { useState } from 'react'
 
 function SendComment({slug}: {slug:string}) {
     const {data} = useSession()
     const [value, setVal] = useState('')
     const router = useRouter()
-    async function onSubmitBtn() {
+    function onSubmitBtn() {
         if(data) {
             const body = {
                 desc:value,
                 postSlug: slug,
-                userEmail: data?.user?.email
+                userEmail: data?.user?.email as string
             }
-            await writeComment(JSON.stringify(body))
+            sendComment(body)
             router.refresh()
             setVal('')
         }
@@ -29,6 +28,7 @@ function SendComment({slug}: {slug:string}) {
       {data ? (
         <form
           onSubmit={(e) => {
+            console.log('jldksjfl')
             e.preventDefault();
             onSubmitBtn();
           }}

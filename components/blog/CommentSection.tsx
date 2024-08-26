@@ -1,11 +1,10 @@
 import React from 'react'
 import Comment from './Comment'
 import SendComment from './SendComment';
-import { getComments } from '@/utils/recieveComment';
+import { getComments } from '@/app/actions/comment';
 
 async function CommentSection({slug}:{slug:string}) {
-
-  const comments = await getComments(slug) as {id:string, desc:string, postSlug:string, userID:string, createdAt:string}[]
+  const comments = (await getComments(slug)).comments
 
   return (
     <div className="flex flex-col gap-4 py-8">

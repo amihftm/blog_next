@@ -2,41 +2,24 @@ import React from 'react'
 
 import RecentPosts from './RecentPosts';
 import Pagination from '../pagination/Pagination';
-import { getBlogInfo } from '@/utils/categories';
+import { getBlogInfo } from '@/app/actions/categories';
+import { getAllPosts } from '@/app/actions/posts';
 
-async function getRecentPosts(page:number, blog:string) {
-  const res = await fetch(`${process.env.HOST_URL}/api/posts?pageNum=${page}&blog=${blog}`, {cache:'no-cache'});
 
-  if (!res.ok) throw new Error("failed");
-
-  return res.json();
-}
-
-async function CardList({ page, blog }: { page: number; blog: string }) {
-  const res = await getRecentPosts(page, blog);
-  const POSTS_PER_PAGE = 2;
-  const canNext = POSTS_PER_PAGE * page < res[1];
+async function CardList({ page, blog }: { page: number; blog?: string }) {
+  const res = await getAllPosts(page.toString(), blog);
+  const canNext = res.lastPage > page;
   const canPrev = page > 1;
 
   return (
     <div className="flex flex-col md:basis-2/3">
       <h2 className="title_h2">پست های اخیر</h2>
-      {res[0].map(async function
-        (post: {
-          id: string;
-          slug: string;
-          image: string;
-          title: string;
-          desc: string;
-          views: number;
-          userID: string;
-          categorySlug: string;
-          createdAt: string;
-        }) {
-          const catName = await getBlogInfo(post.categorySlug);
+      {res.posts.map(async function
+        (post) {
+          const catName = (await getBlogInfo(post.categorySlug)).CategoryInfo;
           return (
             <RecentPosts
-              cat={catName.title}
+              cat={catName?.title as string}
               date={post.createdAt}
               desc={post.desc}
               title={post.title}
@@ -46,7 +29,7 @@ async function CardList({ page, blog }: { page: number; blog: string }) {
           );
         }
       )}
-      <Pagination page={page} blog={blog} hasPrev={canPrev} hasNext={canNext} />
+      <Pagination page={page} hasPrev={canPrev} hasNext={canNext} />
     </div>
   );
 }

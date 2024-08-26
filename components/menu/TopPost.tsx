@@ -6,7 +6,7 @@ function TopPost({data}: {data:{
   slug: string;
   title: string;
   desc: string;
-  createdAt: string
+  createdAt: Date
 }}) {
   const {slug,title, createdAt, desc } = data
   return (

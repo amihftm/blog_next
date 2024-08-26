@@ -1,11 +1,11 @@
-import { getUserInfo } from '@/utils/getUserInfo';
+import { getUserInfo } from '@/app/actions/user';
 import moment from 'jalali-moment';
 import Image from 'next/image';
 import React from 'react'
 
-async function Comment({data}: {data:{id:string, desc:string, postSlug:string, userID:string, createdAt:string}}) {
+async function Comment({data}: {data:{id:string, desc:string, postSlug:string, userID:string, createdAt:Date}}) {
   const {id, desc, userID, createdAt} = data
-  const userInfo = await getUserInfo(userID)
+  const {userInfo} = await getUserInfo(userID)
   return (
     <div className='flex flex-col flex-auto gap-1'>
       <div className="flex flex-row items-center gap-4">

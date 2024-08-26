@@ -9,6 +9,7 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { IoVideocamOutline } from "react-icons/io5";
 import Tiptap from "@/components/tiptap/Tiptap";
 import { writePosts } from '@/utils/posts';
+import { createNewPost } from "../actions/posts";
 
 function WritePage() {
   // const HOST_URL = "http://localhost:3000/";
@@ -36,13 +37,12 @@ function WritePage() {
       const body = {
         desc,
         content,
-        user: data?.user?.email,
+        user: data?.user?.email as string,
         title,
         slug: slug || tempNumber.toString(),
         categorySlug,
       };
-      await writePosts(JSON.stringify(body))
-      return router.push(`/${body.slug}`)
+      await createNewPost(body)
     } else {
       setWarn("");
     }

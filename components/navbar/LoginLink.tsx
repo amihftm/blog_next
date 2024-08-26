@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 
 function LoginLink() {
   const {data, status} = useSession()
+  console.log(data)
   const [menuOpen, setMenu] = useState(false)
   return (
     <>

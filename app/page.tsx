@@ -9,13 +9,13 @@ function Home({
 }: {
   searchParams: { [searchParams: string]: string };
 }) {
-  const page = parseInt(searchParams["page"]) || 1;
+  const page = parseInt(searchParams["pageNum"]) || 1;
   return (
     <div className="flex flex-col w-full gap-6 mt-6">
       <Featured />
       <CategoryList />
       <div className="flex gap-8">
-        <CardList page={page} blog='design'/>
+        <CardList page={page}/>
         <Menu />
       </div>
     </div>

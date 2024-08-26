@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
 
-function RecentPosts({date, cat, title, desc, slug}:{date:string, cat:string, title:string, desc:string, slug:string}) {
+function RecentPosts({date, cat, title, desc, slug}:{date:Date, cat:string, title:string, desc:string, slug:string}) {
   return (
     <div className="flex w-full min-h-72 justify-between gap-8 py-6">
       <div className="flex-1 relative hidden 2xl:flex">

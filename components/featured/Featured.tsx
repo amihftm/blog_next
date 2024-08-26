@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link';
 import React from 'react'
 
 function Featured() {
@@ -23,6 +24,9 @@ function Featured() {
             نیز وجود دارد. پروژه فوق به صورت سرورلس بر روی VERCEL اجرا شده است.
             احراز هویت با کمک oauth با هر سرویسی امکان پذیر میباشد. (در حال حاضر صرفن گیت هاب قرار گرفته.)
           </p>
+          <Link href={'/write'}>
+          <button className='py-2 px-4 rounded-md bg-[var(--textColor)] text-[var(--bg)]'>همین حالا بنویسید!</button>
+          </Link>
         </div>
         <div className="md:flex-1 min-h-[300px] w-full relative">
           <Image
