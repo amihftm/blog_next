@@ -61,7 +61,7 @@ function WritePage() {
           setTitle(e.target.value);
         }}
       />
-      <div className="flex flex-row gap-1" dir="ltr">
+      <div className="flex flex-row gap-1 text-xs md:text-lg" dir="ltr">
         <p>آدرس بلاگ</p>
         <p>{HOST_URL} </p>
         <input
@@ -94,7 +94,7 @@ function WritePage() {
           </div>
         ) : (
           <p className="text-sm font-light text-[--softTextColor]">
-            به دلیل محدودیت سرور این قابلیت در حد آپلود تصویر نیست.
+            دکمه + در سمت راست، امکان آپلود تصویر را مقدور میکند که به دلیل محدودیت سرور غیرفعال است.
           </p>
         )}
       </div>

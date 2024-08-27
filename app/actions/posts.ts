@@ -44,21 +44,27 @@ export async function createNewPost(body: {
   user: string;
   categorySlug: string;
 }) {
+  let redirectPath: string | null = null
   try {
+    let userID
+    if(body.user) userID = (await prisma.user.findUnique({where:{email:body.user}}))?.id as string
+    else userID = process.env.DEFAULT_EMAIL as string
     await prisma.post.create({
       data: {
         content: body.content,
         title: body.title,
         desc: body.desc,
         slug: body.slug,
-        userID: body.user,
+        userID,
         categorySlug: body.categorySlug,
       },
     });
-    redirect(`/${body.slug}`);
+    redirectPath = `/${body.slug}`
   } catch (err) {
     console.log(err);
     return { msg: "problem", status: 500 };
+  } finally {
+    if(redirectPath) redirect(redirectPath);
   }
 }
 

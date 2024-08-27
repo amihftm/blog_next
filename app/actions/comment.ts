@@ -16,14 +16,17 @@ export async function getComments(slug:string) {
     }
 }
 
-export async function sendComment(body:{desc:string, postSlug:string, userEmail:string}) {
+export async function sendComment(body:{desc:string, postSlug:string, userEmail?:string}) {
     try{
         const createdAt = new Date()
+        let userID
+        if(body.userEmail === null) userID = process.env.DEFAULT_EMAIL as string
+        else userID = (await prisma.user.findUnique({where:{email:body.userEmail}}))?.id as string
         await prisma.comment.create({
             data: {
                 desc: body.desc,
                 postSlug: body.postSlug,
-                userID: body.userEmail,
+                userID,
                 createdAt,
             }
         })

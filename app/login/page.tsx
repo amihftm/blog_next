@@ -21,7 +21,8 @@ function LoginPage() {
         <h2 className='title_h2 text-center'>ورود با:</h2>
         <button className={styles.main_button} onClick={() => signIn('google')}>Google</button>
         <button className={styles.main_button} disabled>FaceBook</button>
-        <button className={styles.main_button} onClick={() => signIn('github')}>Github</button>
+        {/* <button className={styles.main_button} onClick={() => signIn('github')}>Github</button> */}
+        <button className={styles.main_button} disabled>Github</button>
     </div>
   )
 }
