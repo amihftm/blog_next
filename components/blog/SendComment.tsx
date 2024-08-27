@@ -28,7 +28,6 @@ function SendComment({slug}: {slug:string}) {
       {data ? (
         <form
           onSubmit={(e) => {
-            console.log('jldksjfl')
             e.preventDefault();
             onSubmitBtn();
           }}

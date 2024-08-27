@@ -2,14 +2,7 @@ import React from "react";
 import Link from "next/link";
 import * as FaIcons from "react-icons/fa"
 import * as SiIcons from "react-icons/si"
-
-async function getCategories() {
-  const res = await fetch(`${process.env.HOST_URL}/api/categories`, {cache:'no-cache'});
-
-  if (!res.ok) throw new Error("failed");
-
-  return res.json();
-}
+import { getCategories } from "@/app/actions/categories";
 
 function returnIcon(image='icon') {
   try {
@@ -32,13 +25,13 @@ function returnIcon(image='icon') {
 }
 
 async function CategoryList() {
-  const categories = await getCategories()
+  const categories = (await getCategories()).categories
 
   return (
     <div className="flex flex-col gap-4">
       <h2 className="title_h2">دسته بندی ها</h2>
       <ul className="flex gap-2 py-2 overflow-auto" key={"listItems"}>
-        {categories.map((category:{id:String, slug:string, image:string, title:string, color:string}, index:number) => {
+        {categories && categories.map((category, index:number) => {
           return (
             <li
               key={category["id"].toString() + index.toString()}
